@@ -15,6 +15,5 @@ namespace Spotify
             Name = name;
 
         }
-        public List<Artist> Artists = new List<Artist>();
     }
 }
