@@ -8,11 +8,14 @@ namespace Spotify
 {
     internal class ListOfSongs
     {
-        public List<Song> songs = new List<Song>();
+        public string Name { get; set; }
 
-        public ListOfSongs(List<Song> Songs)
+        public List<Song> Songs = new List<Song>();
+
+        public ListOfSongs(string name, List<Song> songs)
         {
-            this.songs = Songs;
+            Name = name;
+            Songs = songs;
         }
     }
 }

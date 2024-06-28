@@ -14,13 +14,17 @@ namespace Spotify
         public int Age { get; set; }
         List<Artist> Artists { get; set; }
 
-        public Song(string title, string genre, int lenghtinseconds, int age, List<Artist> artists)
+        public Song(string title, string genre, int lenghtinseconds, int age)
         {
             Title = title;
             Genre = genre;
             LengthInSeconds = lenghtinseconds;
             Age = age;
-            Artists = artists;
+            Artists = new List<Artist>();
+        }
+        public void AddArtist(Artist artist)
+        {
+            Artists.Add(artist);
         }
     }
 }
