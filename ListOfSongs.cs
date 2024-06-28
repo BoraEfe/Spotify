@@ -17,5 +17,28 @@ namespace Spotify
             Name = name;
             Songs = songs;
         }
+        public static void StopSong(List<Song> songs, int index)
+        {
+            Console.WriteLine("Song has stopped");
+        }
+        public static void PlaySong(List<Song> songs, int index)
+        {
+            if (index >= 0 && index < songs.Count)
+            {
+                Song song = songs[index];
+                Console.WriteLine($"Playing song: {song.Title}.......");
+            }
+
+        }
+        public static void SkipSong(List<Song> songs, int index)
+        {
+            if (index >= 0 && index < songs.Count)
+            {
+                index ++;
+                Song song = songs[index];
+                Console.WriteLine($"Skipping song: {song.Title}.......");
+            }
+
+        }
     }
 }
