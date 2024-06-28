@@ -14,11 +14,18 @@ namespace Spotify
         {
 
         }
-        public void Addsong(Song song)
+        public static void Makeplaylist(string name, List<Song> songs)
+        {
+            Console.WriteLine("Enter the name of the playlist");
+            string PlaylistInputName = Console.ReadLine();
+            PlaylistInputName = name;
+            Playlist playlist = new Playlist(name, songs);
+        }
+        public void AddSong(Song song)
         {
             Songs.Add(song);
         }
-        public void removesong(Song song)
+        public void RemoveSong(Song song)
         {
             Songs.Remove(song);
         }
