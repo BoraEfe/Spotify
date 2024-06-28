@@ -7,14 +7,14 @@ namespace Spotify
         static void Main(string[] args)
         {
 
-            Song song1 = new Song("RocknChan", "Jazz", 154, 1955);
-            Song song2 = new Song("ChanRock", "Rock", 154, 1955);
-            Song song3 = new Song("Rockyveli", "Pop", 154, 1955);
-            Song song4 = new Song("Chanveli", "Jazz", 154, 1955);
-            Song song5 = new Song("RockyRock", "Rock", 154, 1955);
-            Song song6 = new Song("ChanChan", "Pop", 154, 1955);
-            Song song7 = new Song("RockRock", "Jazz", 154, 1955);
-            Song song8 = new Song("ChanChan", "Rock", 154, 1955);
+            Song song1 = new Song("Thriller", "Disco", 174, 1988);
+            Song song2 = new Song("Billie Jean", "Disco", 214, 1982);
+            Song song3 = new Song("Beat it", "Disco", 258, 1983);
+            Song song4 = new Song("Smooth Criminal", "Disco", 236, 1988);
+            Song song5 = new Song("Dirty Diana", "Disco", 228, 1980);
+            Song song6 = new Song("Black or White", "Disco", 228, 1980);
+            Song song7 = new Song("Bad", "Disco", 228, 1980);
+            Song song8 = new Song("The way you make me feel", "Disco", 228, 1980);
 
             List<Song> playlist1Songs = new List<Song> { song1, song2, song3, song4, song5 };
             List<Song> playlist2Songs = new List<Song> { song1, song2, song3, song4, song5 };
@@ -53,13 +53,11 @@ namespace Spotify
 
             static void ShowSongs(List<Song> songs)
             {
+                int index = 0;
                 foreach (Song song in songs)
                 {
-                    Console.WriteLine("Title: " + song.Title);
-                    Console.WriteLine("genre: " + song.Genre);
-                    Console.WriteLine("Length: " + song.LengthInSeconds);
-                    Console.WriteLine("Year: " + song.Age + "\n");
-
+                    Console.WriteLine("Title: " + song.Title + ", genre: " + song.Genre + ", Length: " + song.LengthInSeconds + ", Year: " + song.Age  + ", Id: " + index + "\n");
+                    index++;
                 }
             }
             static void ShowPlaylist(List<Playlist> playlists)
@@ -92,8 +90,14 @@ namespace Spotify
                 }
             }
 
-
             Console.WriteLine("Welkom bij Velify");
+
+            string antwoord = "";
+
+
+            while (antwoord != "7")
+            { 
+
             Console.WriteLine("Kies een van de volgende opties:");
             Console.WriteLine("1. Bekijk alle songs");
             Console.WriteLine("2. Bekijk alle albums");
@@ -101,11 +105,11 @@ namespace Spotify
             Console.WriteLine("4. Bekijk jouw playlists");
             Console.WriteLine("5. Bekijk alle users");
             Console.WriteLine("6. Maak nieuwe playlist");
-            Console.WriteLine("7. Exit");
-            string antwoord = Console.ReadLine();
+            Console.WriteLine("7. Speel nummer af");
+            Console.WriteLine("8. Exit");
 
-            while (antwoord != "7")
-            {
+            antwoord = Console.ReadLine();
+            
                 switch (antwoord)
                 {
                     case "1":
@@ -127,6 +131,40 @@ namespace Spotify
                         Playlist.Makeplaylist("kevin", AllSongs);
                         break;
                     case "7":
+
+                        ShowSongs(AllSongs);
+                        Console.WriteLine("Welk nummer wil je afspelen?");
+                        string nummer = Console.ReadLine();
+                        int nummerInt = Convert.ToInt32(nummer);
+                        ListOfSongs.PlaySong(AllSongs, nummerInt);
+                        string nummerActie = "";
+                        while (nummerActie != "1" && nummerActie != "3") {
+                            Console.WriteLine(
+                                "1. Stop nummer\n" +
+                                "2. Skip nummer\n" +
+                                "3. Kies ander nummer\n" +
+                                "4. Terug naar menu\n");
+                             nummerActie = Console.ReadLine();
+                            switch (nummerActie)
+                            {
+                                case "1":
+                                    ListOfSongs.StopSong(AllSongs, nummerInt);
+                                    break;
+                                case "2":
+                                    ListOfSongs.SkipSong(AllSongs, nummerInt);
+                                    break;
+                                case "3":
+                                    break;
+                                case "":
+                                    break;
+                            }
+                        }
+                        break;
+                    case "8":
+                        Console.WriteLine("Tot ziens!");
+                        break;
+                    default:
+                        Console.WriteLine("Ongeldige invoer");
                         break;
                 }
             }
